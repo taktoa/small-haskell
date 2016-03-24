@@ -195,41 +195,4 @@ readAllInput :: (Input -> IO ()) -> IO ()
 readAllInput f = forever $ readInput >>= f
 
 main :: IO ()
-main = do
-  let username  = "taktoa"
-      startPW   = "passgggg"
-      resultPW  = "password"
-      offset    = 600
-      hashCount = 1000500
-      elapsed   = Time 106.3
-      total     = Time 501.2
-      put       = putStrLn
-  threadId <- myThreadId
-  put "---------------------------------------------------------------"
-  put "---- START OF DEBUGGING OUTPUT --------------------------------"
-  put "---------------------------------------------------------------"
-  put ""
-  put "---- printStartUser(...) -----------------"
-  printStartUser username
-  put ""
-  put "---- printThreadStart(...) ---------------"
-  printThreadStart threadId username offset startPW
-  put ""
-  put "---- printThreadResult(..., 0)  ----------"
-  printThreadResult threadId hashCount (toEnum 0)
-  put ""
-  put "---- printThreadResult(..., 1) -----------"
-  printThreadResult threadId hashCount (toEnum 1)
-  put ""
-  put "---- printThreadResult(..., 2) -----------"
-  printThreadResult threadId hashCount (toEnum 2)
-  put ""
-  put "---- printSummary(..., 0) ----------------"
-  printSummary username resultPW hashCount elapsed total True
-  put ""
-  put "---- printSummary(..., 1) ----------------"
-  printSummary username resultPW hashCount elapsed total False
-  put ""
-  put "---------------------------------------------------------------"
-  put "---- END OF DEBUGGING OUTPUT ----------------------------------"
-  put "---------------------------------------------------------------"
+main = return ()
