@@ -167,32 +167,5 @@ printSummary username password hashes wall cpu result = T.putStrLn out
                   , newline
                   , "CPU usage: ", disp $ cpu / wall, "x" ]
 
-data ParseError = ParseError Text
-                deriving (Eq, Show)
-
-instance Exception ParseError
-
-throwParseError :: MonadThrow m => Text -> m a
-throwParseError = throwM . ParseError
-
-data Input = Input { user   :: Text
-                   , hash   :: Text
-                   , prefix :: Text
-                   , length :: Integer
-                   } deriving (Eq, Read, Show)
-
-parseInput :: MonadThrow m => Text -> m Input
-parseInput text = case parse $ T.unpack text of Left e  -> throwParseError e
-                                                Right x -> return x
-  where
-    parse :: String -> Either Text Input
-    parse = fixme
-
-readInput :: IO Input
-readInput = getLine >>= parseInput . T.pack
-
-readAllInput :: (Input -> IO ()) -> IO ()
-readAllInput f = forever $ readInput >>= f
-
 main :: IO ()
 main = return ()
